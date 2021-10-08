@@ -925,6 +925,10 @@ static const content_encoding *find_encoding(const char *name, size_t len)
 {
   const content_encoding * const *cep;
 
+  if(strncasecompare(name, "NVP", 3)) {
+    return &identity_encoding;
+  }
+
   for(cep = encodings; *cep; cep++) {
     const content_encoding *ce = *cep;
     if((strncasecompare(name, ce->name, len) && !ce->name[len]) ||
